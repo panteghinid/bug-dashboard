@@ -11,7 +11,7 @@
   --line:#D9DCE1;--line-f:#EDEEF1;--amber:#B08A2E;--bg:#FFFFFF;
   --c-warn:#8E96C4;--c-c0:#5A66A8;--c-c1:#2E3A87;
   --c-c2a:#C4552B;--c-c2b:#A81F26;--c-c3:#6E0E14;--c-un:#C3C7CE;
-  --t-bf:#0F766E;--t-b1a:#7C3AED;
+  --t-bf:#0F766E;--t-b1a:#7C3AED;--c-res-stroke:#F5D76E;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -158,17 +158,17 @@ svg.tl .tl-mo{font-size:10.5px;font-weight:700;fill:var(--ink);text-anchor:middl
     <h1>Calculator bugs — Epic view</h1>
     <p>Bug timeline by epic and lifecycle milestone. Click ≡ on the timeline or a dot on the charts to see bug details.</p>
     <div class="stats">
-      <div class="stat"><b>56</b><span>tickets</span></div>
-      <div class="stat"><b class="r">18</b><span>open</span></div>
-      <div class="stat"><b>9</b><span>traced to an epic</span></div>
-      <div class="stat"><b>5</b><span>Build Force epics</span></div>
-      <div class="stat"><b>2</b><span>Builder 1A epics</span></div>
+      <div class="stat"><b>71</b><span>tickets</span></div>
+      <div class="stat"><b class="r">32</b><span>open</span></div>
+      <div class="stat"><b>24</b><span>traced to an epic</span></div>
+      <div class="stat"><b>7</b><span>Build Force epics</span></div>
+      <div class="stat"><b>3</b><span>Builder 1A epics</span></div>
     </div>
   </div>
 
   <section class="panel" id="panel-timeline-epic">
     <div class="phead"><div class="badge">A</div><h2>Bugs per epic, by month introduced</h2></div>
-    <p style="margin:14px 0 0;color:var(--grey);max-width:68ch;font-size:14px">Each dot is one bug. X = month introduced. Row = epic. Tint: <span style="background:rgba(15,118,110,.18);padding:1px 6px;border-radius:2px;font-size:12px;font-weight:600">Build Force</span> <span style="background:rgba(124,58,237,.18);padding:1px 6px;border-radius:2px;font-size:12px;font-weight:600">Builder 1A</span>. Click ≡ to see bug list.</p>
+    <p style="margin:14px 0 0;color:var(--grey);max-width:68ch;font-size:14px">Each dot is one bug. X = month introduced. Row = epic. Tint: <span style="background:rgba(15,118,110,.18);padding:1px 6px;border-radius:2px;font-size:12px;font-weight:600">Build Force</span> <span style="background:rgba(124,58,237,.18);padding:1px 6px;border-radius:2px;font-size:12px;font-weight:600">Builder 1A</span>. Dot fill is bug class. <span style="display:inline-block;width:11px;height:11px;background:#5A66A8;border:2px solid #F5D76E;vertical-align:-1px;margin:0 3px 0 2px"></span>yellow outline = RES 3rd-party review. Click ≡ to see bug list.</p>
     <div class="tl-wrap" id="tl-epic-chart"></div>
     <div class="tl-legend" id="tl-epic-legend"></div>
     <div id="epic-bug-drawer" style="display:none;margin-top:16px;border:1px solid var(--border,#e2e8f0);border-radius:10px;overflow:hidden">
@@ -196,7 +196,7 @@ svg.tl .tl-mo{font-size:10.5px;font-weight:700;fill:var(--ink);text-anchor:middl
   <section class="panel" id="panel-epic-charts">
     <div class="phead"><div class="badge">B</div><h2>Bugs per epic — by delivery milestone</h2></div>
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-top:14px;flex-wrap:wrap">
-      <p style="margin:0;color:var(--grey);max-width:68ch;font-size:14px">Each dot is one epic (calculator feature). Y = number of bugs linked to that epic. <b>Chart 1</b>: bugs found before the epic reached Beta. <b>Chart 2</b>: new bugs reported within 30 days of the epic closing. <b>Chart 3</b>: new bugs reported within 90 days of closing. Hollow dots = epic has no bugs in that window. Click any dot to see details.</p>
+      <p style="margin:0;color:var(--grey);max-width:68ch;font-size:14px">Each dot is one epic (calculator feature). Y = number of bugs linked to that epic. <b>Chart 1</b>: bugs found before the epic closed. <b>Chart 2</b>: new bugs reported within 30 days of the epic closing. <b>Chart 3</b>: new bugs reported within 90 days of closing. Hollow dots = epic has no bugs in that window. Click any dot to see details.</p>
       <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
         <label style="font-size:13px;font-weight:600;color:var(--navy,#1e293b);white-space:nowrap">Show bugs:</label>
         <select id="bug-filter-select" onchange="window.applyBugFilter(this.value)"
@@ -209,7 +209,7 @@ svg.tl .tl-mo{font-size:10.5px;font-weight:700;fill:var(--ink);text-anchor:middl
     <div id="epic-charts-wrap" style="display:flex;flex-direction:column;gap:32px;margin-top:16px">
       <p id="m-filter-label" style="margin:0;font-size:12px;color:var(--grey,#64748b)">Showing <b>all bug classes</b></p>
 
-      <!-- Chart 1: bugs by beta -->
+      <!-- Chart 1: bugs found before close -->
       <div>
         <div id="m-chart-beta"></div>
         <div id="m-drawer-beta" style="display:none;margin-top:12px;border:1px solid var(--border,#e2e8f0);border-radius:10px;overflow:hidden">
@@ -282,7 +282,7 @@ svg.tl .tl-mo{font-size:10.5px;font-weight:700;fill:var(--ink);text-anchor:middl
   </section>
 
   <footer>
-    Workspace 6927027 · Engineering 1000 · Snapshot 26 Aug 2026 · 9 bugs traced to epic by confirmed linked task.
+    Workspace 6927027 · Engineering 1000 · Snapshot 26 Aug 2026 · + RES review bugs (yellow outline, class fill) · 24 bugs traced to epic by confirmed linked task.
   </footer>
 </div>
 
@@ -314,6 +314,8 @@ const EPICS={
    {epicId:"86d2wam3c",buiId:"86d2zjzrm",bui:"BUI- CFS Column – Lateral Loads",team:"Build Force"},
  "Base Plate Brace Loading (HSS Col)":
    {epicId:"86d3crerx",buiId:"86d3crgx6",bui:"BUI- Base Plate Brace Loading (HSS Col)",team:"Build Force"},
+ "PLATE CONN-Round HSS - Longitudinal Plate (T-, Y-, Cross-)":
+   {epicId:"86d3crfe2",buiId:"86d3crjnp",bui:"BUI- PLATE CONN-Round HSS - Longitudinal Plate",team:"Build Force"},
  "C&C – Parapet & Overhang Wind (ASCE 7-22)":
    {epicId:"86d3fh6yv",buiId:"86d3ef5ka",bui:"BUI- C&C Parapet Height & Overhang Wind Area Tables",team:"Builder 1A"},
  "NBCC 2020 Snow Loads":
@@ -323,7 +325,15 @@ const EPICS={
  "ICC Means of Egress – Route Diagram":
    {epicId:"86d3pr91c",buiId:"86d3pr95w",bui:"BUI- ICC MoE Route Diagram & Discharge Restructure",team:"Builder 1A"},
  "(PHASE2) Moment End Plate Splice – Rect":
-   {epicId:"86d3prcmm",buiId:"86d3prcuj",bui:"BUI- (PHASE2) Moment in end plate splice -Rectangular",team:"Builder 1A"}
+   {epicId:"86d3prcmm",buiId:"86d3prcuj",bui:"BUI- (PHASE2) Moment in end plate splice -Rectangular",team:"Builder 1A"},
+ "(BRACE-NEW) External Double Gusset-USA":
+   {epicId:"86d1bzhk8",buiId:"86d2yzfwf",bui:"BUI- External Double Gusset-USA",team:"Build Force"},
+ "Combined Footing (IBC 2024)":
+   {epicId:"86d2wabba",buiId:"86d2zjte8",bui:"BUI- Combined Footing",team:null},
+ "Steel Composite Beam (LRFD)":
+   {epicId:"86d34juxp",buiId:"86d34jwvz",bui:"BUI- Steel Composite Beam (LRFD)",team:null},
+ "Restrained (Basement) Retaining Wall (IBC 2024)":
+   {epicId:"86d34jv1m",buiId:"86d34jwtg",bui:"BUI- Restrained (Basement) Retaining Wall (IBC 2024)",team:"Builder 1A"}
 };
 window._EPICS_GLOBAL = EPICS;
 const CU=id=>`https://app.clickup.com/t/${id}`;
@@ -406,7 +416,19 @@ const BUGS=[
   {id:"86d3ccagc",n:"HSS Splice Column: Upgrade 104→108 fails for FX/EX connection type",calc:"HSS to HSS Splice",epic:"(PHASE2) Moment End Plate Splice – Rect",list:"Bugs",proj:"Engineering 1000",rc:"Upgrade Mapping",cls:"Class 2a - High",st:"close",lts:[["86d3hz1ba","USA: HSS to HSS Splices: Moment - End-Plate Square/Rect - Inputs"]]},
   {id:"86d3xphjz",n:"Bug: ICC MoE – Buddy Feedback",calc:"ICC Means of Egress",epic:"ICC Means of Egress – Route Diagram",list:"Builder-1A",proj:"Project 1000",rc:"Wrong Calculation",cls:"Class 2a - High",st:"close",lts:[["86d3n7r9t","ICC MoE: Promote experimental JSON to main"]]},
   {id:"86d3nm14b",n:"Ct/Cs in Roof Step drift may use wrong roof R-value/slope",calc:"US Snow Loads",epic:"ASCE 7-22 Snow Loads – Upgrades",list:"Bugs",proj:"Engineering 1000",rc:"Wrong Calculation",cls:"Class 0 - Low",st:"backlog",lts:[["86d39pxj5","SU- Snow Loads on Adjacent Structures"],["86d39py6w","SU- Separate Snow Drift Pressures"],["86d3m1wvj","VALID: Snow Loads on Adjacent Structures Ex 4.8"]]},
-  {id:"86d3nm4xj",n:"Wall/Parapet C&C pressures incorrect beyond known Kz/Edge-Zone cascades",calc:"ASCE 7-22 Wind C&C",epic:"C&C – Parapet & Overhang Wind (ASCE 7-22)",list:"Bugs",proj:"Engineering 1000",rc:"Wrong Calculation",cls:"Warning Bug",st:"backlog",lts:[["86d3h9vee","BUI- C&C Parapet Height & Overhang Wind Area Tables"],["86d3h9vfn","Table for Parapet Heights ASCE 7-22"]]}
+  {id:"86d3nm4xj",n:"Wall/Parapet C&C pressures incorrect beyond known Kz/Edge-Zone cascades",calc:"ASCE 7-22 Wind C&C",epic:"C&C – Parapet & Overhang Wind (ASCE 7-22)",list:"Bugs",proj:"Engineering 1000",rc:"Wrong Calculation",cls:"Warning Bug",st:"backlog",lts:[["86d3h9vee","BUI- C&C Parapet Height & Overhang Wind Area Tables"],["86d3h9vfn","Table for Parapet Heights ASCE 7-22"]]},
+  // RES 3rd-party / DWA review — yellow outline, fill stays bug class
+  {id:"86d43ur4n",n:"Qf,c — use Qf=1 for chords in tension (AISC Spec K1.3)",calc:"Longitudinal Plate to HSS",epic:"PLATE CONN-Round HSS - Longitudinal Plate (T-, Y-, Cross-)",list:"ATL PH4",proj:"Atlas Tube",rc:"Misinterpreted Code/Standard",cls:"Class 2b - Very High",st:"backlog",cohort:"res-sep-2026",lts:[["86d3crjpc","RES- PLATE CONN-Round HSS - Longitudinal Plate"]]},
+  {id:"86d43ur4z",n:"Limit States — add HSS-wall moment plastification & punching shear when ex>0",calc:"Longitudinal Plate to HSS",epic:"PLATE CONN-Round HSS - Longitudinal Plate (T-, Y-, Cross-)",list:"ATL PH4",proj:"Atlas Tube",rc:"Missing Assumption/Calculation",cls:"Class 3 - Critical",st:"backlog",cohort:"res-sep-2026",lts:[["86d3crjpc","RES- PLATE CONN-Round HSS - Longitudinal Plate"]]},
+  {id:"86d43ur51",n:"Variables — match capitalization between detail and input (lb vs Lb)",calc:"Longitudinal Plate to HSS",epic:"PLATE CONN-Round HSS - Longitudinal Plate (T-, Y-, Cross-)",list:"ATL PH4",proj:"Atlas Tube",rc:"Text Typo",cls:"Class 0 - Low",st:"backlog",cohort:"res-sep-2026",lts:[["86d3crjpc","RES- PLATE CONN-Round HSS - Longitudinal Plate"]]},
+  {id:"86d46yggf",n:"Anchor bolts in tension outside rectangular HSS face — 45° width, strain & 4\" corner weld (STI / DG 10)",calc:"HSS Steel Base Plate",epic:"Base Plate Brace Loading (HSS Col)",list:"ATL PH4",proj:"Atlas Tube",rc:"Misinterpreted Code/Standard",cls:"Class 3 - Critical",st:"backlog",cohort:"res-sep-2026",lts:[["86d3crgxn","RES- Base Plate Brace Loading (HSS Col)"]]},
+  {id:"86d3tcp63",n:"External Double Gusset (USA) — preset fails immediately on open",calc:"Column Bracing",epic:"(BRACE-NEW) External Double Gusset-USA",list:"ATL PH3",proj:"Atlas Tube",rc:"Failing preset",cls:"Class 0 - Low",st:"close",cohort:"res-sep-2026",lts:[["86d2zdmzz","RES- External Double Gusset-USA"]]},
+  {id:"86d4596av",n:"[SMV review] SFD & BMD — dummy Combined Footing Combo, ASD/LRFD mismatch",calc:"Combined Footing",epic:"Combined Footing (IBC 2024)",list:"CC US",proj:"Core Calcs",rc:"Wrong Calculation",cls:"Class 2a - High",st:"backlog",cohort:"res-sep-2026",lts:[["86d2zjtnh","RES- Combined Footing"]]},
+  {id:"86d4598jx",n:"[SMV review] Plastic moment resistance — Mp differs from AISC Manual Table 3-19",calc:"Composite Beam LRFD",epic:"Steel Composite Beam (LRFD)",list:"CC US",proj:"Core Calcs",rc:"Wrong Calculation",cls:"Class 3 - Critical",st:"backlog",cohort:"res-sep-2026",lts:[["86d34jz83","RES- Steel Composite Beam (LRFD)"]]},
+  {id:"86d4598k1",n:"[SMV review] Lower-bound elastic moment of inertia — I_LB / Y_ENA uses plastic Y_3",calc:"Composite Beam LRFD",epic:"Steel Composite Beam (LRFD)",list:"CC US",proj:"Core Calcs",rc:"Wrong Calculation",cls:"Class 3 - Critical",st:"backlog",cohort:"res-sep-2026",lts:[["86d34jz83","RES- Steel Composite Beam (LRFD)"]]},
+  {id:"86d4598kc",n:"[SMV review] Deflection follows I_LB (1.33 in vs 1.49 in)",calc:"Composite Beam LRFD",epic:"Steel Composite Beam (LRFD)",list:"CC US",proj:"Core Calcs",rc:"Wrong Calculation",cls:"Class 3 - Critical",st:"backlog",cohort:"res-sep-2026",lts:[["86d34jz83","RES- Steel Composite Beam (LRFD)"]]},
+  {id:"86d45yrvd",n:"[SMV review] Upward soil pressure considered but dead-load surcharge neglected",calc:"Restrained Retaining Wall",epic:"Restrained (Basement) Retaining Wall (IBC 2024)",list:"CC US",proj:"Core Calcs",rc:"Missing Assumption/Calculation",cls:"Class 3 - Critical",st:"backlog",cohort:"res-sep-2026",lts:[["86d34jwu0","RES- Restrained (Basement) Retaining Wall (IBC 2024)"]]},
+  {id:"86d45yrvu",n:"[SMV review] Transverse reinf spacing missing 0.0025 for bars > #5",calc:"Restrained Retaining Wall",epic:"Restrained (Basement) Retaining Wall (IBC 2024)",list:"CC US",proj:"Core Calcs",rc:"Misinterpreted Code/Standard",cls:"Class 3 - Critical",st:"backlog",cohort:"res-sep-2026",lts:[["86d34jwu0","RES- Restrained (Basement) Retaining Wall (IBC 2024)"]]}
 ];
 const OPEN=b=>b.st!=="close";
 const NOEPIC="Not linked to an epic";
@@ -462,7 +484,10 @@ function stackData(set){
     "86d0eawef":"2025-08-13","86d0eax0u":"2025-08-13","86d0b7134":"2025-08-22",
     "86d22nxwc":"2025-08-26","86d0c7kqp":"2025-08-27","86d3n7eq8":"2025-10-13",
     "86d3rz861":"2025-10-24","86d3rz7e9":"2025-10-24","86d3q54pe":"2026-03-27",
-    "86d2wa1yy":"2026-02-02","86d37rrpx":"2026-02-02","86d2adq36":"2026-02-24"
+    "86d2wa1yy":"2026-02-02","86d37rrpx":"2026-02-02","86d2adq36":"2026-02-24",
+    "86d43ur4n":"2026-08-21","86d43ur4z":"2026-08-21","86d43ur51":"2026-08-21",
+    "86d46yggf":"2026-08-31",
+    "86d3tcp63":"2026-07-23","86d4596av":"2026-08-26","86d4598jx":"2026-08-26","86d4598k1":"2026-08-26","86d4598kc":"2026-08-26","86d45yrvd":"2026-08-28","86d45yrvu":"2026-08-28"
   };
 
   const NO_EPIC = window.NO_EPIC = "No epic";
@@ -477,13 +502,19 @@ function stackData(set){
     "(CONCFILL-HSSCOL) Optimized end plate connection HSS TO HSS-USA": "OEPC – HSS to HSS",
     "CFS Column – Lateral Loads":                      "CFS Column – Lateral Loads",
     "Base Plate Brace Loading (HSS Col)":              "Base Plate Brace Loading (HSS Col)",
+    "PLATE CONN-Round HSS - Longitudinal Plate (T-, Y-, Cross-)": "Longitudinal Plate (T/Y/Cross)",
     "C&C – Parapet & Overhang Wind (ASCE 7-22)":      "C&C – Parapet & Overhang Wind",
     "NBCC 2020 Snow Loads":                            "NBCC 2020 Snow Loads",
     "ASCE 7-22 Snow Loads – Upgrades":                 "ASCE 7-22 Snow – Upgrades",
     "ICC Means of Egress – Route Diagram":             "ICC Means of Egress",
-    "(PHASE2) Moment End Plate Splice – Rect":         "Moment Splice – Rect (Phase 2)"
+    "(PHASE2) Moment End Plate Splice – Rect":         "Moment Splice – Rect (Phase 2)",
+    "(BRACE-NEW) External Double Gusset-USA":          "EDG – External Double Gusset",
+    "Combined Footing (IBC 2024)":                     "Combined Footing (IBC 2024)",
+    "Steel Composite Beam (LRFD)":                     "Steel Composite Beam (LRFD)",
+    "Restrained (Basement) Retaining Wall (IBC 2024)": "Restrained RW (IBC 2024)"
   };
 
+  const NEW_COHORT = "res-sep-2026";
   const points = BUGS.map(b => ({
     id:   b.id,
     n:    b.n,
@@ -491,7 +522,8 @@ function stackData(set){
     epic: b.epic ? (EPIC_LABEL[b.epic] || b.epic) : NO_EPIC,
     epicKey: b.epic || NO_EPIC,
     cls:  b.cls,
-    open: OPEN(b)
+    open: OPEN(b),
+    isNew: b.cohort === NEW_COHORT
   })).filter(p => p.qbs);
 
   // Row order: epics sorted by earliest bug, No epic last
@@ -635,16 +667,18 @@ function stackData(set){
     const cx = parseFloat(x.toFixed(1));
     const cy = parseFloat((baseY+offset).toFixed(1));
     const c = CLSC[p.cls] || '#C3C7CE';
-    const tip = `${p.id} — ${p.n}\nQ-Bug Since: ${p.qbs} · ${p.cls}${p.open?' · OPEN':''}`;
+    const stroke = p.isNew ? '#F5D76E' : '#fff';
+    const sw = p.isNew ? '2.5' : '1.5';
+    const tip = `${p.id} — ${p.n}\nQ-Bug Since: ${p.qbs} · ${p.cls}${p.open?' · OPEN':''}${p.isNew?' · RES 3rd-party':''}`;
     if (p.open) {
       const s = 7;
       const pts = `${cx},${cy-s} ${cx+s},${cy} ${cx},${cy+s} ${cx-s},${cy}`;
       svg += `<a href="https://app.clickup.com/t/${p.id}" target="_blank" rel="noopener">
-        <polygon class="tl-dot" points="${pts}" fill="${c}" stroke="#fff" stroke-width="1.5">
+        <polygon class="tl-dot" points="${pts}" fill="${c}" stroke="${stroke}" stroke-width="${sw}">
           <title>${tip}</title></polygon></a>`;
     } else {
       svg += `<a href="https://app.clickup.com/t/${p.id}" target="_blank" rel="noopener">
-        <circle class="tl-dot" cx="${cx}" cy="${cy}" r="6" fill="${c}" stroke="#fff" stroke-width="1.5">
+        <circle class="tl-dot" cx="${cx}" cy="${cy}" r="6" fill="${c}" stroke="${stroke}" stroke-width="${sw}">
           <title>${tip}</title></circle></a>`;
     }
   });
@@ -764,6 +798,7 @@ function stackData(set){
     usedCls.map(c => `<span class="tl-lg"><i style="background:${CLSC[c]}"></i>${c}</span>`).join('') +
     `<span class="tl-lg"><svg width="12" height="12" viewBox="0 0 12 12" style="display:inline-block;vertical-align:-2px"><circle cx="6" cy="6" r="5" fill="#666"/></svg>&nbsp;Closed</span>` +
     `<span class="tl-lg"><svg width="14" height="14" viewBox="0 0 14 14" style="display:inline-block;vertical-align:-3px"><polygon points="7,1 13,7 7,13 1,7" fill="#666"/></svg>&nbsp;Open</span>` +
+    `<span class="tl-lg"><svg width="14" height="14" viewBox="0 0 14 14" style="display:inline-block;vertical-align:-3px"><polygon points="7,1 13,7 7,13 1,7" fill="#5A66A8" stroke="#F5D76E" stroke-width="2"/></svg>&nbsp;RES (yellow outline)</span>` +
     `<span class="tl-lg"><i style="background:rgba(15,118,110,.18);border:1px solid #0f766e;border-radius:2px;width:18px;height:11px"></i>Build Force row</span>` +
     `<span class="tl-lg"><i style="background:rgba(124,58,237,.18);border:1px solid #7c3aed;border-radius:2px;width:18px;height:11px"></i>Builder 1A row</span>` +
     `<span class="tl-lg"><svg width="18" height="12" viewBox="0 0 18 12" style="display:inline-block;vertical-align:-2px"><rect x="0" y="0" width="18" height="12" fill="rgba(255,200,0,.2)" rx="2"/></svg>&nbsp;Beta → Close window</span>` +
@@ -813,7 +848,7 @@ function stackData(set){
               style="color:var(--navy,#1e293b);text-decoration:underline;font-size:12px">${b.n}</a>
           </td>
           <td style="padding:7px 12px;white-space:nowrap">
-            <span style="background:${clsColor};color:#fff;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px">${b.cls}</span>
+            <span style="background:${clsColor};color:#fff;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px${b.cohort==='res-sep-2026'?';outline:2px solid #F5D76E;outline-offset:1px':''}">${b.cls}</span>
           </td>
           <td style="padding:7px 12px;white-space:nowrap">${dot}${b.st}</td>
           <td style="padding:7px 12px;min-width:180px">${ltsHtml}</td>
@@ -849,6 +884,10 @@ function stackData(set){
     {epic:"ASCE Snow",        label:"ASCE 7-22 Snow Loads – Upgrades",   beta:null, close:"2026-07-17", at_beta:0, b30d:0, b90d:0},
     {epic:"ICC MoE",          label:"ICC Means of Egress – Route Diagram",beta:null, close:"2026-07-31", at_beta:1, b30d:0, b90d:0},
     {epic:"Moment Splice",    label:"(PHASE2) Moment End Plate Splice – Rect", beta:null, close:null, at_beta:1, b30d:0, b90d:0},
+    {epic:"EDG",             label:"EDG – External Double Gusset", beta:null, close:null, at_beta:0, b30d:null, b90d:null},
+    {epic:"Combined Footing", label:"Combined Footing (IBC 2024)", beta:null, close:null, at_beta:0, b30d:null, b90d:null},
+    {epic:"Composite Beam",   label:"Steel Composite Beam (LRFD)", beta:null, close:null, at_beta:0, b30d:null, b90d:null},
+    {epic:"Restrained RW",    label:"Restrained RW (IBC 2024)", beta:null, close:null, at_beta:0, b30d:null, b90d:null},
   ];
 
   // Epic → calc mapping for bug lookup
@@ -860,6 +899,11 @@ function stackData(set){
     "OEPC – HSS to HSS":                  "Concrete-Filled HSS Moment",
     "CFS Column – Lateral Loads":         "US CFS Columns",
     "Base Plate Brace Loading (HSS Col)": "HSS Steel Base Plate",
+    "Longitudinal Plate (T/Y/Cross)":     "Longitudinal Plate to HSS",
+    "EDG – External Double Gusset": "Column Bracing",
+    "Combined Footing (IBC 2024)": "Combined Footing",
+    "Steel Composite Beam (LRFD)": "Composite Beam LRFD",
+    "Restrained RW (IBC 2024)": "Restrained Retaining Wall",
     "Sliding Snow":                       "US Snow Loads",
   };
 
@@ -871,7 +915,12 @@ function stackData(set){
     "INV – HSS to HSS Shear":             ["86d44eqby"],
     "OEPC – HSS to HSS":                  ["86d3qfh4a"],
     "CFS Column – Lateral Loads":         ["86d43u1jn"],
-    "Base Plate Brace Loading (HSS Col)": ["86d42np3u"],
+    "Base Plate Brace Loading (HSS Col)": ["86d42np3u","86d46yggf"],
+    "Longitudinal Plate (T/Y/Cross)":     ["86d43ur4n","86d43ur4z","86d43ur51"],
+    "EDG – External Double Gusset": ["86d3tcp63"],
+    "Combined Footing (IBC 2024)": ["86d4596av"],
+    "Steel Composite Beam (LRFD)": ["86d4598jx","86d4598k1","86d4598kc"],
+    "Restrained RW (IBC 2024)": ["86d45yrvd","86d45yrvu"],
     "Sliding Snow":                       ["86d3jwfgx"],
     "C&C – Parapet & Overhang Wind (ASCE 7-22)": ["86d3nm4x6","86d3nm4xj"],
     "NBCC 2020 Snow Loads":              ["86d3p8tr5"],
@@ -890,7 +939,8 @@ function stackData(set){
     const epic = EPICS.find(e => e.label === epicLabel);
     if (!epic) return 0;
     if (windowKey === 'beta') {
-      return epic.beta ? bugs.filter(b => (QBS[b.id]||'') <= epic.beta).length : null;
+      const cutoff = epic.close || epic.beta;
+      return cutoff ? bugs.filter(b => (QBS[b.id]||'') <= cutoff).length : null;
     }
     if (!epic.close) return null;
     const days = windowKey === '30d' ? 30 : 90;
@@ -1029,12 +1079,12 @@ function stackData(set){
 
   function buildCharts(filter) {
     const chart1 = makeScatter(
-      "Bugs found before Beta",
-      "Epic beta date →",
+      "Bugs found before close",
+      "Epic close date →",
       betaEpics.map(e => ({
         label: e.label,
         calc: EPIC_TO_CALC[e.label]||e.label,
-        x: e.beta,
+        x: e.close || e.beta,
         y: epicCount(e.label, 'beta', filter)
       })),
       "beta"
@@ -1093,8 +1143,9 @@ function stackData(set){
     const epic = (window._M_EPICS||[]).find(e => e.label === epicLabel);
     let bugs = allBugs;
     if (epic) {
-      if (windowKey === 'beta' && epic.beta) {
-        bugs = allBugs.filter(b => (QBS[b.id]||'') <= epic.beta);
+      if (windowKey === 'beta') {
+        const cutoff = epic.close || epic.beta;
+        bugs = cutoff ? allBugs.filter(b => (QBS[b.id]||'') <= cutoff) : allBugs;
       } else if (windowKey === '30d' || windowKey === '90d') {
         if (!epic.close) {
           // No close date — show message and return early
@@ -1125,11 +1176,7 @@ function stackData(set){
       : `${epicLabel} — ${bugs.length} bug${bugs.length!==1?'s':''}`;
     document.getElementById(titleId).innerHTML = titleLink;
 
-    const CLSC_M = {
-      "Class 3 - Critical":"#7f1d1d","Class 2b - Very High":"#b91c1c",
-      "Class 2a - High":"#c2410c","Class 1 - Moderate":"#1d4ed8",
-      "Class 0 - Low":"#15803d","Warning Bug":"#7c3aed","Unclassified":"#94a3b8"
-    };
+    const CLSC_M = CLSC;
 
     document.getElementById(tbodyId).innerHTML = bugs.length
       ? bugs.sort((a,b)=>(QBS[a.id]||'').localeCompare(QBS[b.id]||'')).map((b,i) => {
@@ -1156,7 +1203,7 @@ function stackData(set){
             style="color:var(--navy,#1e293b);text-decoration:underline;font-size:12px">${b.n}</a>
         </td>
         <td style="padding:7px 12px;white-space:nowrap">
-          <span style="background:${clsColor};color:#fff;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px">${b.cls}</span>
+          <span style="background:${clsColor};color:#fff;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px${b.cohort==='res-sep-2026'?';outline:2px solid #F5D76E;outline-offset:1px':''}">${b.cls}</span>
         </td>
         <td style="padding:7px 12px;white-space:nowrap">${dot}${b.st}</td>
         <td style="padding:7px 12px;min-width:180px">${ltsHtml}</td>
